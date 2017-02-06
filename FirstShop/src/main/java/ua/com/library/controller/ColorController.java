@@ -17,40 +17,35 @@ import ua.com.library.validator.ValidationMessages;
 public class ColorController {
 	@Autowired
 	private ColorService colorService;
-	
-	@RequestMapping(value="/newColor", method=RequestMethod.GET)
-	public String newColor(Model model){
+
+	@RequestMapping(value = "/newColor", method = RequestMethod.GET)
+	public String newColor(Model model) {
 		model.addAttribute("color", new Color());
 		model.addAttribute("colors", DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
-		
-		
 		return "views-admin-color";
 	}
-	
-	@RequestMapping(value="/addColor", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/addColor", method = RequestMethod.POST)
 	public String addColor(@ModelAttribute Color color, Model model) {
-		try{
+		try {
 			colorService.save(color);
-			}catch (Exception e) {
-					if(e.getMessage().equals(ValidationMessages.EMPTY_COLOR_NAME_FIELD)||
-							e.getMessage().equals(ValidationMessages.COLOR_ALREADY_EXIST)){
-						model.addAttribute("colorException", e.getMessage());
-						model.addAttribute("color", new Color());
-						model.addAttribute("colors", DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
-				}	
-				return "views-admin-color";
+		} catch (Exception e) {
+			if (e.getMessage()
+					.equals(ValidationMessages.EMPTY_COLOR_NAME_FIELD)
+					|| e.getMessage().equals(
+							ValidationMessages.COLOR_ALREADY_EXIST)) {
+				model.addAttribute("colorException", e.getMessage());
+				model.addAttribute("color", new Color());
+				model.addAttribute("colors",DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
 			}
-		
-		
+			return "views-admin-color";
+		}
 		return "redirect:/newColor";
 	}
-	
-	
-	@RequestMapping(value="/deleteColor/{id}", method=RequestMethod.GET)
-	
-	public String deleteColor(@PathVariable int id){
+
+	@RequestMapping(value = "/deleteColor/{id}", method = RequestMethod.GET)
+	public String deleteColor(@PathVariable int id) {
 		colorService.delete(id);
-		
 		return "redirect:/newColor";
-}
+	}
 }

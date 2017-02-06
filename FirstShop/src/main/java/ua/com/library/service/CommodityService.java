@@ -8,14 +8,16 @@ import ua.com.library.entity.Commodity;
 
 public interface CommodityService {
 
-	void save(Commodity commodity)throws Exception;
+	void save(Commodity commodity) throws Exception;
 
 	List<Commodity> findAll();
 
 	Commodity findOne(int id);
 
 	void delete(int id);
-	public void saveImage( int id, MultipartFile multipartFile);
-	   public void updateCommodity(Commodity commodity) ;
-	    
+
+	public void saveImage(int id, MultipartFile multipartFile);
+
+	public void updateCommodity(Commodity commodity);
+
 }

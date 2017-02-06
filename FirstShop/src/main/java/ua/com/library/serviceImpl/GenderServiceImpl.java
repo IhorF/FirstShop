@@ -44,15 +44,11 @@ public class GenderServiceImpl implements GenderService {
 
 	@Transactional
 	public void delete(int id) {
-
 		Gender gender = genderDao.findOne(id);
-
 		for (Commodity commodity : gender.getCommodity()) {
 			commodity.setGender(null);
 			commodityDao.save(commodity);
-
 		}
 		genderDao.delete(gender);
-
 	}
 }

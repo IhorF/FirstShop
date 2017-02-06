@@ -16,9 +16,9 @@ public class Season {
 
 	private String name;
 
-	@OneToMany(mappedBy="season")
+	@OneToMany(mappedBy = "season")
 	private List<Commodity> commodity;
-	
+
 	public Season() {
 	}
 
@@ -50,15 +50,15 @@ public class Season {
 	public void setCommodity(List<Commodity> commodity) {
 		this.commodity = commodity;
 	}
-	
-	public String getFullSeason() {
-		String fullSeason=this.name;
 
-	return  fullSeason;
+	public String getFullSeason() {
+		String fullSeason = this.name;
+
+		return fullSeason;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Season: "+ name;
+		return "Season: " + name;
 	}
 }

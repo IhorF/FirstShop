@@ -5,8 +5,7 @@ public class CommodityDTO {
 	private double price;
 	private String pathImage;
 	private int id;
-	
-	
+
 	public CommodityDTO() {
 	}
 
@@ -14,8 +13,8 @@ public class CommodityDTO {
 		super();
 		this.articul = articul;
 		this.id = id;
-		this.price=price;
-		this.pathImage=pathImage;
+		this.price = price;
+		this.pathImage = pathImage;
 	}
 
 	public String getArticul() {
@@ -34,7 +33,6 @@ public class CommodityDTO {
 		this.id = id;
 	}
 
-	
 	public double getPrice() {
 		return price;
 	}
@@ -57,8 +55,4 @@ public class CommodityDTO {
 				+ ", pathImage=" + pathImage + ", id=" + id + "]";
 	}
 
-
-
-
-	
 }

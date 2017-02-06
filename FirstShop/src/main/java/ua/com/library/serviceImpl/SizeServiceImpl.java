@@ -15,8 +15,9 @@ import ua.com.library.entity.Commodity;
 import ua.com.library.entity.Size;
 import ua.com.library.service.SizeService;
 import ua.com.library.validator.Validator;
+
 @Service
-public class SizeServiceImpl implements SizeService{
+public class SizeServiceImpl implements SizeService {
 	@Autowired
 	private CommodityDao commodityDao;
 	@Autowired
@@ -24,11 +25,9 @@ public class SizeServiceImpl implements SizeService{
 	@Autowired
 	@Qualifier("sizeValidator")
 	private Validator validator;
-	
-	
-	
+
 	@Override
-	public void save(Size size) throws Exception  {
+	public void save(Size size) throws Exception {
 		validator.validate(size);
 		sizeDao.save(size);
 	}
@@ -45,15 +44,11 @@ public class SizeServiceImpl implements SizeService{
 
 	@Transactional
 	public void delete(int id) {
-		Size size=sizeDao.findOne(id);
-		
+		Size size = sizeDao.findOne(id);
 		for (Commodity commodity : size.getCommodity()) {
 			commodity.setSize(null);
 			commodityDao.save(commodity);
-			
 		}
 		sizeDao.delete(size);
 	}
-	}
-
-
+}

@@ -16,9 +16,9 @@ public class Category {
 
 	private String name;
 
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy = "category")
 	private List<Commodity> commodity;
-	
+
 	public Category() {
 	}
 
@@ -52,16 +52,14 @@ public class Category {
 	}
 
 	public String getFullCategory() {
-		String fullCategory=this.name;
+		String fullCategory = this.name;
 
-	return  fullCategory;
+		return fullCategory;
 	}
 
 	@Override
 	public String toString() {
-		return "Category: "+ name;
+		return "Category: " + name;
 	}
-	
-	
-	
+
 }

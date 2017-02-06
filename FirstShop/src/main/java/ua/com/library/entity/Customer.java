@@ -3,7 +3,6 @@ package ua.com.library.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,14 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
-
-	
 @Entity
 public class Customer implements UserDetails {
 
@@ -32,21 +27,17 @@ public class Customer implements UserDetails {
 	private String phoneNumber;
 	private String eMail;
 	private String password;
-	
 	private String pathImage;
 	private boolean enabled;
 	private String UUID;
+
 	public String getUUID() {
 		return UUID;
 	}
 
-
-
 	public void setUUID(String uUID) {
 		UUID = uUID;
 	}
-
-
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
@@ -61,7 +52,6 @@ public class Customer implements UserDetails {
 
 	@Enumerated
 	private Role role;
-	
 
 	public Customer(String name, String surName, String phoneNumber,
 			String eMail, String password) {
@@ -72,8 +62,6 @@ public class Customer implements UserDetails {
 		this.eMail = eMail;
 		this.password = password;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -121,64 +109,45 @@ public class Customer implements UserDetails {
 
 	public void setCommodity(List<Commodity> commodity) {
 		this.commodities = commodity;
-		
+
 	}
-
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 	public Role getRole() {
 		return role;
 	}
 
-
-
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
-	   public String getOriginUsername(){
-	        return name;
-	    }
-	   
-	   
-	   
-		public List<Commodity> getCommodities() {
-			return commodities;
-		}
+	public String getOriginUsername() {
+		return name;
+	}
 
+	public List<Commodity> getCommodities() {
+		return commodities;
+	}
 
-
-		public void setCommodities(List<Commodity> commodities) {
-			this.commodities = commodities;
-		}
-	   
-	   
-
+	public void setCommodities(List<Commodity> commodities) {
+		this.commodities = commodities;
+	}
 
 	public String getPathImage() {
 		return pathImage;
 	}
 
-
-
 	public void setPathImage(String pathImage) {
 		this.pathImage = pathImage;
 	}
 
-
-	//for security
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", surName=" + surName
@@ -187,15 +156,11 @@ public class Customer implements UserDetails {
 				+ ", role=" + role + "]";
 	}
 
-
-
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority(role.name()));
 		return authorities;
 	}
-
-
 
 	public String getUsername() {
 		return String.valueOf(id);
@@ -216,15 +181,5 @@ public class Customer implements UserDetails {
 	public boolean isEnabled() {
 		return enabled;
 	}
-
-
-
-
-
-
-
-
-
-
 
 }

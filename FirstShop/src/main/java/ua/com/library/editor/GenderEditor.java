@@ -4,8 +4,8 @@ import java.beans.PropertyEditorSupport;
 
 import ua.com.library.service.GenderService;
 
-public class GenderEditor extends PropertyEditorSupport{
-	
+public class GenderEditor extends PropertyEditorSupport {
+
 	private final GenderService genderService;
 
 	public GenderEditor(GenderService genderService) {

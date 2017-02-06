@@ -9,17 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <title>Shop</title> -->
 </head>
-
-
 <body>
 <div ><tiles:insertAttribute name="header"/></div>
-	
-	
 	<div style="height:600px"><tiles:insertAttribute name="body"/></div>
-		
-	
-	
-	
 	<div><tiles:insertAttribute name="footer"/></div>
 </body>
 </html>

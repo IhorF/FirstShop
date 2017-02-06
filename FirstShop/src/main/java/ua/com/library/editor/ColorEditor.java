@@ -4,8 +4,8 @@ import java.beans.PropertyEditorSupport;
 
 import ua.com.library.service.ColorService;
 
-public class ColorEditor extends PropertyEditorSupport{
-	
+public class ColorEditor extends PropertyEditorSupport {
+
 	private final ColorService colorService;
 
 	public ColorEditor(ColorService colorService) {

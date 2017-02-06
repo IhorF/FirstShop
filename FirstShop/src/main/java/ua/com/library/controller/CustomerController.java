@@ -30,7 +30,6 @@ public class CustomerController {
 	@Autowired
 	private MailSenderService mailSenderService;
 	
-	
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String newCustomer(Model model){
 		model.addAttribute("customerDTOs", DtoUtilMapper.customerToCustomersDTOs( customerService.findAll()));
@@ -41,11 +40,8 @@ public class CustomerController {
 	@RequestMapping(value="/saveCustomer", method=RequestMethod.POST)
 	public String registration( @ModelAttribute Customer customer, Model model) 
 	{
-		String uuid=UUID.randomUUID().toString();
-		
-		customer.setUUID(uuid);
-		
-		
+		String uuid=UUID.randomUUID().toString();	
+		customer.setUUID(uuid);		
 		try{
 		customerService.save(customer);
 		}catch (Exception e) {
@@ -64,13 +60,10 @@ public class CustomerController {
 				model.addAttribute("emailException", e.getMessage());
 			}	
 			return "views-customer-registration";
-		}
-		
+		}	
 		String theme ="thank's for registration"; 
-		String massage="gl & hf http://localhost:8080/FirstShop/confirm/" + uuid;
-		
-		mailSenderService.sendMail(theme, massage, customer.geteMail());
-		
+		String massage="gl & hf http://localhost:8080/FirstShop/confirm/" + uuid;	
+		mailSenderService.sendMail(theme, massage, customer.geteMail());	
 		return "redirect:/home";
 	}
 	
@@ -82,7 +75,6 @@ public class CustomerController {
 		return "redirect:/home";
 	}
 	
-	
 	@RequestMapping(value="/deleteCustomer/{id}", method=RequestMethod.GET)
 	public String deleteCustomer(@PathVariable(value="id") int idd){
 		customerService.delete(idd);
@@ -93,81 +85,21 @@ public class CustomerController {
 	public String saveImage(Principal principal, @RequestParam MultipartFile image){
 		System.out.println(image);
 		customerService.saveImage(Integer.parseInt(principal.getName()), image);
-		return "redirect:/profile";
-		
+		return "redirect:/profile";	
 	}
-	
-	
-	
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(HttpServletRequest request, Principal principal, Model model) {
-
-
 		Customer customer = customerService.fetchCustomerWithCommodity(Integer.parseInt(principal.getName()));
-
 		model.addAttribute("customer", customer);
-
 		return "views-customer-profile";
 	}
 	
 	@RequestMapping(value="/deleteCommodityFromCustomer/{id}", method=RequestMethod.GET)
-	public String deleteCommodityFromCustomer(Principal principal, @PathVariable("id") int idCommodity){
-		
-		
-		customerService.deleteCommodityFromCustomer(Integer.parseInt(principal
-				.getName()),idCommodity);
+	public String deleteCommodityFromCustomer(Principal principal, @PathVariable("id") int idCommodity){		
+		customerService.deleteCommodityFromCustomer(Integer.parseInt(principal.getName()),idCommodity);
 		return "redirect:/profile";
 	}
-	
 }
 		
-		
-		
-		
-		
-/*	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile(Principal principal, Model model) {
-		Customer customer = customerService.fetchCustomerWithCommodity(Integer.parseInt(principal.getName()));
-		model.addAttribute("customer", customer);
-		return "views-customer-profile";
-	}
-		
-	
-	@RequestMapping(value = "/buyCommodity/{id}", method = RequestMethod.GET)
-	public String buyCommodity(Principal principal, @PathVariable String id) {
-		customerService.buyCommodity(principal, id);
-		return "redirect:/";
-	}
-	*/
-
-
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	

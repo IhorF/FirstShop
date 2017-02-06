@@ -25,10 +25,8 @@ public class CompositionServiceImpl implements CompositionService {
 	@Autowired
 	@Qualifier("compositionValidator")
 	private Validator validator;
-	
-	
-	
-	public void save(Composition composition) throws Exception{
+
+	public void save(Composition composition) throws Exception {
 		validator.validate(composition);
 		compositionDao.save(composition);
 	}
@@ -40,50 +38,31 @@ public class CompositionServiceImpl implements CompositionService {
 	public Composition findOne(int id) {
 		return compositionDao.findOne(id);
 	}
+	
 	@Transactional
 	public void delete(int id) {
-//		compositionDao.delete(id);
-		
-		Composition composition=compositionDao.findOne(id);
-		
+		Composition composition = compositionDao.findOne(id);
 		for (Commodity commodity : composition.getCommodity()) {
 			commodity.setComposition(null);
 			commodityDao.save(commodity);
-			
 		}
 		compositionDao.delete(composition);
-		
 	}
 
-	
 	@Transactional
-	public void addCommodityToComposition(Composition composition/*, int idCommodity*/) {
-		
+	public void addCommodityToComposition(Composition composition) {
 		compositionDao.saveAndFlush(composition);
-	/*	Commodity commodity=commodityDao.findOne(idCommodity);
-		
-		commodity.setComposition(composition);
-		commodityDao.save(commodity);*/
-		
-		
 	}
+
 	@Transactional
 	public void deleteCommodityFromComposition(String idCommodity) {
-		
-		Commodity commodity=commodityDao.findOne(Integer.parseInt(idCommodity));
-		
+		Commodity commodity = commodityDao.findOne(Integer.parseInt(idCommodity));
 		commodity.setComposition(null);
-		
 		commodityDao.save(commodity);
-		
-		
 	}
-	
+
 	public List<Composition> findCompositionWithCommodities() {
 		return compositionDao.findCompositionWithCommodity();
 	}
-
-
-	
 
 }

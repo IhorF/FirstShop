@@ -45,16 +45,11 @@ public class SeasonServiceImpl implements SeasonService {
 
 	@Transactional
 	public void delete(int id) {
-
 		Season season = seasonDao.findOne(id);
-
 		for (Commodity commodity : season.getCommodity()) {
 			commodity.setSeason(null);
 			commodityDao.save(commodity);
-
 		}
 		seasonDao.delete(season);
-
 	}
-
 }

@@ -25,51 +25,40 @@ public class CommodityServiceImpl implements CommodityService {
 	@Autowired
 	@Qualifier("commodityValidator")
 	private Validator validator;
-	
-	
-	
-	
-	public void save(Commodity commodity)throws Exception {
+
+	public void save(Commodity commodity) throws Exception {
 		validator.validate(commodity);
 		commodityDao.save(commodity);
-
 	}
 
 	public List<Commodity> findAll() {
-
 		return commodityDao.findAll();
 	}
 
 	public Commodity findOne(int id) {
-
 		return commodityDao.findOne(id);
 	}
 
 	public void delete(int id) {
 		commodityDao.delete(id);
-
 	}
 
 	@Transactional
 	public void saveImage(int id, MultipartFile multipartFile) {
-
-		Commodity commodity= commodityDao.findOne(id);
-System.out.println(commodity.getArticul());
+		Commodity commodity = commodityDao.findOne(id);
+		System.out.println(commodity.getArticul());
 		String path = System.getProperty("catalina.home") + "/resources/"
 				+ commodity.getArticul() + "/"
 				+ multipartFile.getOriginalFilename();
-
-	commodity.setPathImage("resources/" + commodity.getArticul() + "/"
+		
+		commodity.setPathImage("resources/" + commodity.getArticul() + "/"
 				+ multipartFile.getOriginalFilename());
 		
-
 		File file = new File(path);
-
 		try {
 			file.mkdirs();
 			try {
-				FileUtils.cleanDirectory(new File(System
-						.getProperty("catalina.home")
+				FileUtils.cleanDirectory(new File(System.getProperty("catalina.home")
 						+ "/resources/"
 						+ commodity.getArticul() + "/"));
 			} catch (IOException e) {
@@ -79,16 +68,11 @@ System.out.println(commodity.getArticul());
 		} catch (IOException e) {
 			System.out.println("error with file");
 		}
-		
 		commodityDao.save(commodity);
 	}
-	
 
 	@Override
 	public void updateCommodity(Commodity commodity) {
-		  
-		   commodityDao.save(commodity);
-		    }		
+		commodityDao.save(commodity);
 	}
-
-
+}

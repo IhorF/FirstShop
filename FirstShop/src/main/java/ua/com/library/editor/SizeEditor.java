@@ -4,8 +4,8 @@ import java.beans.PropertyEditorSupport;
 
 import ua.com.library.service.SizeService;
 
-public class SizeEditor extends PropertyEditorSupport{
-	
+public class SizeEditor extends PropertyEditorSupport {
+
 	private final SizeService sizeService;
 
 	public SizeEditor(SizeService sizeService) {

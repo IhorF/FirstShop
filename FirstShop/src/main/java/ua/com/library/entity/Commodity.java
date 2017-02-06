@@ -27,12 +27,10 @@ public class Commodity {
 	@JoinTable(name = "customer_commodity", joinColumns = @JoinColumn(name = "commodity_id"), inverseJoinColumns = @JoinColumn(name = "customer_id"))
 	private List<Customer> customers;
 
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "commodity_color", joinColumns = @JoinColumn(name = "commodity_id"), inverseJoinColumns = @JoinColumn(name = "color_id"))
 	private List<Color> colors;
-	
-		
+
 	@ManyToOne
 	private Category category;
 
@@ -45,13 +43,8 @@ public class Commodity {
 	@ManyToOne
 	private Size size;
 
-	
-	
-	
 	public Commodity() {
 	}
-
-
 
 	public Commodity(String articul, double price, String pathImage) {
 		super();
@@ -59,11 +52,6 @@ public class Commodity {
 		this.price = price;
 		this.pathImage = pathImage;
 	}
-
-
-
-
-
 
 	public Commodity(String articul, double price, String pathImage,
 			List<Customer> customers, List<Color> colors, Category category,
@@ -80,8 +68,6 @@ public class Commodity {
 		this.gender = gender;
 		this.size = size;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -154,6 +140,7 @@ public class Commodity {
 	public void setSize(Size size) {
 		this.size = size;
 	}
+
 	public double getPrice() {
 		return price;
 	}
@@ -162,20 +149,12 @@ public class Commodity {
 		this.price = price;
 	}
 
-
-
-
-
 	public String getPathImage() {
 		return pathImage;
 	}
 
-
-
-
-
 	public void setPathImage(String pathImage) {
 		this.pathImage = pathImage;
 	}
-	
+
 }

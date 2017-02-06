@@ -4,7 +4,7 @@ public class CategoryDTO {
 	private int id;
 
 	private String name;
-	
+
 	public CategoryDTO() {
 	}
 
@@ -35,13 +35,10 @@ public class CategoryDTO {
 		return "CategoryDTO [id=" + id + ", name=" + name + "]";
 	}
 
-	
-	
 	public String getFullCategory() {
-		String fullCategory=this.name;
+		String fullCategory = this.name;
 
-	return  fullCategory;
+		return fullCategory;
 	}
-
 
 }

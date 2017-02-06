@@ -4,9 +4,9 @@ public class GenderDTO {
 	private int id;
 
 	private String name;
-	
+
 	public GenderDTO() {
-		
+
 	}
 
 	public GenderDTO(int id, String name) {
@@ -36,12 +36,10 @@ public class GenderDTO {
 		return "GenderDTO [id=" + id + ", name=" + name + "]";
 	}
 
-
 	public String getFullGender() {
-		String fullGender=this.name;
+		String fullGender = this.name;
 
-	return  fullGender;
+		return fullGender;
 	}
 
 }
-

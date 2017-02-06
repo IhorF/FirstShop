@@ -9,23 +9,19 @@ import ua.com.library.entity.Commodity;
 @Component("commodityValidator")
 public class CommodityValidator implements Validator {
 	@Autowired
-	private CommodityDao	commodityDao;
+	private CommodityDao commodityDao;
 
 	@Override
 	public void validate(Object object) throws Exception {
-Commodity commodity=(Commodity) object;
-		
-if(commodityDao.commodityExistsByArticul(commodity.getArticul())){
-	throw new ValidationException(ValidationMessages.ARTICUL_ALREADY_EXIST);
-}
-if(commodity.getPrice()==0 ){
-	throw new ValidationException(ValidationMessages.PRICE_IS_NULL);
-}
-if(commodity.getArticul().isEmpty()){
-	throw new ValidationException(ValidationMessages.EMPTY_ARTICUL_FIELD);
-}
+		Commodity commodity = (Commodity) object;
+		if (commodityDao.commodityExistsByArticul(commodity.getArticul())) {
+			throw new ValidationException(ValidationMessages.ARTICUL_ALREADY_EXIST);
+		}
+		if (commodity.getPrice() == 0) {
+			throw new ValidationException(ValidationMessages.PRICE_IS_NULL);
+		}
+		if (commodity.getArticul().isEmpty()) {
+			throw new ValidationException(ValidationMessages.EMPTY_ARTICUL_FIELD);
+		}
 	}
-	
-	
-	
 }

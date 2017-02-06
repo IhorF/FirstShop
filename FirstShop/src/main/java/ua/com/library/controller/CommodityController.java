@@ -57,34 +57,23 @@ public class CommodityController {
 
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Composition.class, new CompositionEditor(
-				compositionService));
-		binder.registerCustomEditor(Category.class, new CategoryEditor(
-				categoryService));
+		binder.registerCustomEditor(Composition.class, new CompositionEditor(compositionService));
+		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryService));
 		binder.registerCustomEditor(Color.class, new ColorEditor(colorService));
 		binder.registerCustomEditor(Size.class, new SizeEditor(sizeService));
-		binder.registerCustomEditor(Season.class, new SeasonEditor(
-				seasonService));
-		binder.registerCustomEditor(Gender.class, new GenderEditor(
-				genderService));
+		binder.registerCustomEditor(Season.class, new SeasonEditor(seasonService));
+		binder.registerCustomEditor(Gender.class, new GenderEditor(genderService));
 	}
 
 	@RequestMapping(value = "/newCommodity", method = RequestMethod.GET)
 	public String newCommodity(Model model) {
-		model.addAttribute("commoditiesDTOs", DtoUtilMapper
-				.commoditiesToCommoditiesDTO(commodityService.findAll()));
-		model.addAttribute("compositionDTOs", DtoUtilMapper
-				.compositionsToCompositionsDTO(compositionService.findAll()));
-		model.addAttribute("colorDTOs",
-				DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
-		model.addAttribute("categorieDTOs", DtoUtilMapper
-				.categoriesToCategoriesDTO(categoryService.findAll()));
-		model.addAttribute("sizeDTOs",
-				DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
-		model.addAttribute("seasonDTOs",
-				DtoUtilMapper.seasonsToSeasonsDTO(seasonService.findAll()));
-		model.addAttribute("genderDTOs",
-				DtoUtilMapper.gendersToGendersDTO(genderService.findAll()));
+		model.addAttribute("commoditiesDTOs", DtoUtilMapper.commoditiesToCommoditiesDTO(commodityService.findAll()));
+		model.addAttribute("compositionDTOs", DtoUtilMapper.compositionsToCompositionsDTO(compositionService.findAll()));
+		model.addAttribute("colorDTOs",DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
+		model.addAttribute("categorieDTOs", DtoUtilMapper.categoriesToCategoriesDTO(categoryService.findAll()));
+		model.addAttribute("sizeDTOs",DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
+		model.addAttribute("seasonDTOs",DtoUtilMapper.seasonsToSeasonsDTO(seasonService.findAll()));
+		model.addAttribute("genderDTOs",DtoUtilMapper.gendersToGendersDTO(genderService.findAll()));
 		model.addAttribute("commodity", new Commodity());
 		return "views-admin-commodity";
 	}
@@ -101,28 +90,17 @@ public class CommodityController {
 					|| e.getMessage().equals(
 							ValidationMessages.EMPTY_ARTICUL_FIELD)) {
 				model.addAttribute("commodityArticulException", e.getMessage());
-				model.addAttribute("commoditiesDTOs",
-						DtoUtilMapper
-								.commoditiesToCommoditiesDTO(commodityService
-										.findAll()));
-				model.addAttribute("compositionDTOs", DtoUtilMapper
-						.compositionsToCompositionsDTO(compositionService
-								.findAll()));
-				model.addAttribute("colorDTOs",
-						DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
-				model.addAttribute("categorieDTOs", DtoUtilMapper
-						.categoriesToCategoriesDTO(categoryService.findAll()));
-				model.addAttribute("sizeDTOs",
-						DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
-				model.addAttribute("seasonDTOs", DtoUtilMapper
-						.seasonsToSeasonsDTO(seasonService.findAll()));
-				model.addAttribute("genderDTOs", DtoUtilMapper
-						.gendersToGendersDTO(genderService.findAll()));
+				model.addAttribute("commoditiesDTOs",DtoUtilMapper.commoditiesToCommoditiesDTO(commodityService.findAll()));
+				model.addAttribute("compositionDTOs", DtoUtilMapper.compositionsToCompositionsDTO(compositionService.findAll()));
+				model.addAttribute("colorDTOs",DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
+				model.addAttribute("categorieDTOs", DtoUtilMapper.categoriesToCategoriesDTO(categoryService.findAll()));
+				model.addAttribute("sizeDTOs",DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
+				model.addAttribute("seasonDTOs", DtoUtilMapper.seasonsToSeasonsDTO(seasonService.findAll()));
+				model.addAttribute("genderDTOs", DtoUtilMapper.gendersToGendersDTO(genderService.findAll()));
 				model.addAttribute("commodity", new Commodity());
 			}
 			return "views-admin-commodity";
 		}
-
 		commodityService.saveImage(commodity.getId(), image);
 		return "redirect:/newCommodity";
 	}
@@ -143,7 +121,6 @@ public class CommodityController {
 	public String listCommodity(Model model) {
 		model.addAttribute("commodities", commodityService.findAll());
 		return "views-commodity-listcommodity";
-
 	}
 
 	@RequestMapping(value = "/editCommodity/listcommodity", method = RequestMethod.GET)
@@ -153,33 +130,21 @@ public class CommodityController {
 	}
 
 	@RequestMapping(value = "/saveImageCommodity", method = RequestMethod.POST)
-	public String saveImageCommodity(Principal principal,
-			@RequestParam MultipartFile image) {
-
-		commodityService
-				.saveImage(Integer.parseInt(principal.getName()), image);
+	public String saveImageCommodity(Principal principal, @RequestParam MultipartFile image) {
+		commodityService.saveImage(Integer.parseInt(principal.getName()), image);
 		return "redirect:/profile";
-
 	}
 
 	@RequestMapping(value = "/editCommodity/{id}", method = RequestMethod.GET)
 	public String editCommodity(@PathVariable int id, Model model) {
-
 		model.addAttribute("commodity", commodityService.findOne(id));
-		model.addAttribute("commoditiesDTOs", DtoUtilMapper
-				.commoditiesToCommoditiesDTO(commodityService.findAll()));
-		model.addAttribute("compositionDTOs", DtoUtilMapper
-				.compositionsToCompositionsDTO(compositionService.findAll()));
-		model.addAttribute("colorDTOs",
-				DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
-		model.addAttribute("categorieDTOs", DtoUtilMapper
-				.categoriesToCategoriesDTO(categoryService.findAll()));
-		model.addAttribute("sizeDTOs",
-				DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
-		model.addAttribute("seasonDTOs",
-				DtoUtilMapper.seasonsToSeasonsDTO(seasonService.findAll()));
-		model.addAttribute("genderDTOs",
-				DtoUtilMapper.gendersToGendersDTO(genderService.findAll()));
+		model.addAttribute("commoditiesDTOs", DtoUtilMapper.commoditiesToCommoditiesDTO(commodityService.findAll()));
+		model.addAttribute("compositionDTOs", DtoUtilMapper.compositionsToCompositionsDTO(compositionService.findAll()));
+		model.addAttribute("colorDTOs",DtoUtilMapper.colorsToColorsDTO(colorService.findAll()));
+		model.addAttribute("categorieDTOs", DtoUtilMapper.categoriesToCategoriesDTO(categoryService.findAll()));
+		model.addAttribute("sizeDTOs",DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
+		model.addAttribute("seasonDTOs",DtoUtilMapper.seasonsToSeasonsDTO(seasonService.findAll()));
+		model.addAttribute("genderDTOs",DtoUtilMapper.gendersToGendersDTO(genderService.findAll()));
 		return "views-admin-editCommodity";
 	}
 
@@ -197,7 +162,7 @@ public class CommodityController {
 		updateCommodity.setPathImage(commodity.getPathImage());
 		updateCommodity.setSeason(commodity.getSeason());
 		updateCommodity.setSize(commodity.getSize());
-
+		
 		commodityService.updateCommodity(updateCommodity);
 		commodityService.saveImage(id, image);
 		return "redirect:/listcommodity";

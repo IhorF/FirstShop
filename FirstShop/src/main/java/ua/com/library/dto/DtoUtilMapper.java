@@ -13,27 +13,23 @@ import ua.com.library.entity.Season;
 import ua.com.library.entity.Size;
 
 public class DtoUtilMapper {
-	public static List<CommodityDTO> commoditiesToCommoditiesDTO(
-			List<Commodity> commodities) {
+	public static List<CommodityDTO> commoditiesToCommoditiesDTO(List<Commodity> commodities) {
 
 		List<CommodityDTO> commodityDTOs = new ArrayList<CommodityDTO>();
 
 		for (Commodity commodity : commodities) {
 
 			CommodityDTO commodityDTO = new CommodityDTO();
-
 			commodityDTO.setArticul(commodity.getArticul());
 			commodityDTO.setId(commodity.getId());
 			commodityDTO.setPrice(commodity.getPrice());
 			commodityDTO.setPathImage(commodity.getPathImage());
-
 			commodityDTOs.add(commodityDTO);
 		}
 		return commodityDTOs;
 	}
 
-	public static List<CustomerDTO> customerToCustomersDTOs(
-			List<Customer> customers) {
+	public static List<CustomerDTO> customerToCustomersDTOs(List<Customer> customers) {
 
 		List<CustomerDTO> customerDTOs = new ArrayList<CustomerDTO>();
 
@@ -49,9 +45,7 @@ public class DtoUtilMapper {
 		return customerDTOs;
 	}
 
-	
-	public static List<CategoryDTO> categoriesToCategoriesDTO(
-			List<Category> categories) {
+	public static List<CategoryDTO> categoriesToCategoriesDTO(List<Category> categories) {
 
 		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
 
@@ -61,16 +55,13 @@ public class DtoUtilMapper {
 
 			categoryDTO.setName(category.getName());
 			categoryDTO.setId(category.getId());
-			
 
 			categoryDTOs.add(categoryDTO);
 		}
 		return categoryDTOs;
 	}
-	
-	
-	public static List<GenderDTO> gendersToGendersDTO(
-			List<Gender> genders) {
+
+	public static List<GenderDTO> gendersToGendersDTO(List<Gender> genders) {
 
 		List<GenderDTO> genderDTOs = new ArrayList<GenderDTO>();
 
@@ -80,16 +71,13 @@ public class DtoUtilMapper {
 
 			genderDTO.setName(gender.getName());
 			genderDTO.setId(gender.getId());
-			
 
 			genderDTOs.add(genderDTO);
 		}
 		return genderDTOs;
 	}
-	
-	
-	public static List<SizeDTO> sizesToSizesDTO(
-			List<Size> sizes) {
+
+	public static List<SizeDTO> sizesToSizesDTO(List<Size> sizes) {
 
 		List<SizeDTO> sizeDTOs = new ArrayList<SizeDTO>();
 
@@ -99,15 +87,13 @@ public class DtoUtilMapper {
 
 			sizeDTO.setName(size.getName());
 			sizeDTO.setId(size.getId());
-			
 
 			sizeDTOs.add(sizeDTO);
 		}
 		return sizeDTOs;
 	}
-	
-	public static List<SeasonDTO> seasonsToSeasonsDTO(
-			List<Season> seasons) {
+
+	public static List<SeasonDTO> seasonsToSeasonsDTO(List<Season> seasons) {
 
 		List<SeasonDTO> seasonDTOs = new ArrayList<SeasonDTO>();
 
@@ -117,16 +103,13 @@ public class DtoUtilMapper {
 
 			seasonDTO.setName(season.getName());
 			seasonDTO.setId(season.getId());
-			
 
 			seasonDTOs.add(seasonDTO);
 		}
 		return seasonDTOs;
 	}
-	
-	
-	public static List<CompositionDTO> compositionsToCompositionsDTO(
-			List<Composition> compositions) {
+
+	public static List<CompositionDTO> compositionsToCompositionsDTO(List<Composition> compositions) {
 
 		List<CompositionDTO> compositionDTOs = new ArrayList<CompositionDTO>();
 
@@ -138,17 +121,13 @@ public class DtoUtilMapper {
 			compositionDTO.setLycra(composition.getLycra());
 			compositionDTO.setPolyamide(composition.getPolyamide());
 			compositionDTO.setId(composition.getId());
-			
 
 			compositionDTOs.add(compositionDTO);
 		}
 		return compositionDTOs;
 	}
-	
-	
-	
-	public static List<ColorDTO> colorsToColorsDTO(
-			List<Color> colors) {
+
+	public static List<ColorDTO> colorsToColorsDTO(List<Color> colors) {
 
 		List<ColorDTO> colorDTOs = new ArrayList<ColorDTO>();
 
@@ -158,27 +137,10 @@ public class DtoUtilMapper {
 
 			colorDTO.setName(color.getName());
 			colorDTO.setId(color.getId());
-			
 
 			colorDTOs.add(colorDTO);
 		}
 		return colorDTOs;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

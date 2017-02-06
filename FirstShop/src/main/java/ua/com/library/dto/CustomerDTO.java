@@ -5,7 +5,7 @@ public class CustomerDTO {
 	private String name;
 	private String surName;
 	private String pathImage;
-	
+
 	public CustomerDTO() {
 	}
 
@@ -20,18 +20,23 @@ public class CustomerDTO {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getSurName() {
 		return surName;
 	}
+
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
@@ -43,6 +48,5 @@ public class CustomerDTO {
 	public void setPathImage(String pathImage) {
 		this.pathImage = pathImage;
 	}
-	
-	
+
 }

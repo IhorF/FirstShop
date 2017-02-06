@@ -42,15 +42,13 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category findOne(int id) {
 		return categoryDao.findOne(id);
 	}
+
 	@Transactional
 	public void delete(int id) {
-
 		Category category = categoryDao.findOne(id);
-
 		for (Commodity commodity : category.getCommodity()) {
 			commodity.setCategory(null);
 			commodityDao.save(commodity);
-
 		}
 		categoryDao.delete(category);
 	}

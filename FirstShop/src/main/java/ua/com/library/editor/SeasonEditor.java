@@ -4,8 +4,8 @@ import java.beans.PropertyEditorSupport;
 
 import ua.com.library.service.SeasonService;
 
-public class SeasonEditor extends PropertyEditorSupport{
-	
+public class SeasonEditor extends PropertyEditorSupport {
+
 	private final SeasonService seasonService;
 
 	public SeasonEditor(SeasonService seasonService) {

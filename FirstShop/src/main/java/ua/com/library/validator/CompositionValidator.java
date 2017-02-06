@@ -19,16 +19,13 @@ public class CompositionValidator implements Validator {
 		if(composition.getLycra().isEmpty() || composition.getPolyamide().isEmpty() || composition.getCotton().isEmpty()){
 			throw new ValidationException(ValidationMessages.EMPTY_FIELD);
 		}
-
 		if((Integer.parseInt(composition.getLycra())+Integer.parseInt(composition.getCotton())+Integer.parseInt(composition.getPolyamide()))!=100){
 			throw new ValidationException(ValidationMessages.COMPOSITION_VALUE_TOO_LARGE_OR_TOO_SMALL);
 		}
-
 		if(compositionDao.findByCotton(composition.getCotton())!=null
 				&& compositionDao.findByPolyamide(composition.getPolyamide())!=null
 				&& compositionDao.findByLycra(composition.getLycra())!=null){
 			throw new ValidationException(ValidationMessages.COMPOSITION_ALREADY_EXIST);
 		}
-		
 	}
 }

@@ -4,8 +4,8 @@ import java.beans.PropertyEditorSupport;
 
 import ua.com.library.service.CommodityService;
 
-public class CommodityEditor extends PropertyEditorSupport{
-	
+public class CommodityEditor extends PropertyEditorSupport {
+
 	private final CommodityService commodityService;
 
 	public CommodityEditor(CommodityService commodityService) {

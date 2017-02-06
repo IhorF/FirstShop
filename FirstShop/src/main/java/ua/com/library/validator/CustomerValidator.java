@@ -16,8 +16,7 @@ public class CustomerValidator implements Validator{
 	
 	@Override
 	public void validate(Object object) throws Exception {
-		Customer customer=(Customer) object;
-		
+		Customer customer=(Customer) object;	
 		if(customer.getName().isEmpty()){
 			throw new ValidationException(ValidationMessages.EMPTY_CUSTOMERNAME_FIELD);
 		}
@@ -41,10 +40,6 @@ public class CustomerValidator implements Validator{
 		}
 		if(customer.getPassword().isEmpty()){
 			throw new ValidationException(ValidationMessages.EMPTY_PASSWORD_FIELD);
-		}
-	
-		
-		
+		}	
 	}
-
 }

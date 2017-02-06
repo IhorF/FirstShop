@@ -17,7 +17,4 @@ public class CompositionEditor extends PropertyEditorSupport {
 		setValue(compositionService.findOne(Integer.parseInt(text)));
 	}
 
-	
-
-
 }

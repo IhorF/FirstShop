@@ -4,7 +4,7 @@ public class SeasonDTO {
 	private int id;
 
 	private String name;
-	
+
 	public SeasonDTO() {
 	}
 
@@ -34,12 +34,11 @@ public class SeasonDTO {
 	public String toString() {
 		return "SeasonDTO [id=" + id + ", name=" + name + "]";
 	}
-	
-	
-	public String getFullSeason() {
-		String fullSeason=this.name;
 
-	return  fullSeason;
+	public String getFullSeason() {
+		String fullSeason = this.name;
+
+		return fullSeason;
 	}
-	
+
 }

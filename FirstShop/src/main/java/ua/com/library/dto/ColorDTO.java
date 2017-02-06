@@ -4,7 +4,7 @@ public class ColorDTO {
 	private int id;
 
 	private String name;
-	
+
 	public ColorDTO() {
 	}
 
@@ -35,11 +35,10 @@ public class ColorDTO {
 		return "ColorDTO [id=" + id + ", name=" + name + "]";
 	}
 
-	
 	public String getFullColor() {
-		String fullColor=this.name;
+		String fullColor = this.name;
 
-	return  fullColor;
+		return fullColor;
 	}
 
 }

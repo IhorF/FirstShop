@@ -25,8 +25,6 @@ public class CompositionController {
 	@RequestMapping(value="/newComposition", method=RequestMethod.GET)
 	public String newComposition(Model model){
 		model.addAttribute("compositions", DtoUtilMapper.compositionsToCompositionsDTO(compositionService.findAll()));
-		
-		
 		return "views-admin-composition";
 	}
 	
@@ -45,7 +43,6 @@ public class CompositionController {
 				}	
 				return "views-admin-composition";
 			}
-		
 		return "redirect:/newComposition";
 	}
 	

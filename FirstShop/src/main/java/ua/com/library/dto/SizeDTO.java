@@ -4,7 +4,7 @@ public class SizeDTO {
 	private int id;
 
 	private String name;
-	
+
 	public SizeDTO() {
 	}
 
@@ -34,23 +34,11 @@ public class SizeDTO {
 	public String toString() {
 		return "SizeDTO [id=" + id + ", name=" + name + "]";
 	}
-	
-	
-	
-	
-	public String getFullSize() {
-		String fullSize=this.name;
 
-	return  fullSize;
+	public String getFullSize() {
+		String fullSize = this.name;
+
+		return fullSize;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

@@ -12,18 +12,16 @@
 <br><br>
 <form:form modelAttribute="size" action="addSize" method="post">
 <div style=" font-size: 13px; color: red; margin: 0">
-			<label for="articul">${sizeException}</label>
-		</div>
+		<label for="articul">${sizeException}</label>
+</div>
 	<form:input path="name" placeholder="size" pattern="[0-9]{2}" title="Only numbers!" maxlength="2" />
 	<button title="Save size">save size</button>
 </form:form>
 	<br>
 	<a>Existing sizes:</a><br><br>
-
 <c:forEach var="size" items="${sizes}" varStatus="c">
 	${c.count}. ${size.name} 
 	<a href="deleteSize/${size.id}">delete</a>
 	<br>
 </c:forEach>
-
 </div>

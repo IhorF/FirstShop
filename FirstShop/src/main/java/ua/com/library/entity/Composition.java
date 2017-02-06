@@ -22,15 +22,11 @@ public class Composition {
 	@Column(name = "elastan")
 	private String lycra;
 
-	@OneToMany(mappedBy="composition")
+	@OneToMany(mappedBy = "composition")
 	private List<Commodity> commodity;
-	
-	
-	
+
 	public Composition() {
 	}
-
-
 
 	public Composition(String cotton, String polyamide, String lycra) {
 		super();
@@ -39,79 +35,58 @@ public class Composition {
 		this.lycra = lycra;
 	}
 
-
-
 	public int getId() {
 		return id;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
 	public String getCotton() {
 		return cotton;
 	}
-
-
 
 	public void setCotton(String cotton) {
 		this.cotton = cotton;
 	}
 
-
-
 	public String getPolyamide() {
 		return polyamide;
 	}
-
-
 
 	public void setPolyamide(String polyamide) {
 		this.polyamide = polyamide;
 	}
 
-
-
 	public String getLycra() {
 		return lycra;
 	}
-
-
 
 	public void setLycra(String lycra) {
 		this.lycra = lycra;
 	}
 
-
-
 	public List<Commodity> getCommodity() {
 		return commodity;
 	}
 
-
-
 	public void setCommodity(List<Commodity> commodity) {
 		this.commodity = commodity;
 	}
+
 	public String getFullComposition() {
-		String fullComposition="bavovna: "+this.cotton +"%, " +"poliamid: "+this.polyamide+"%, " +"elastan: "+this.lycra+"%";
-	
-		
-		
-	return  fullComposition;
+		String fullComposition = "bavovna: " + this.cotton + "%, "
+				+ "poliamid: " + this.polyamide + "%, " + "elastan: "
+				+ this.lycra + "%";
+
+		return fullComposition;
 	}
-
-
 
 	@Override
 	public String toString() {
-		return "Composition: bavovna: "+cotton +"%, " +"poliamid: "+polyamide+"%, " +"elastan: "+lycra+"%";
+		return "Composition: bavovna: " + cotton + "%, " + "poliamid: "
+				+ polyamide + "%, " + "elastan: " + lycra + "%";
 	}
-	
-	
+
 }

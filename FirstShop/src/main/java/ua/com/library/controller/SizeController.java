@@ -12,45 +12,39 @@ import ua.com.library.dto.DtoUtilMapper;
 import ua.com.library.entity.Size;
 import ua.com.library.service.SizeService;
 import ua.com.library.validator.ValidationMessages;
+
 @Controller
 public class SizeController {
-	
+
 	@Autowired
 	private SizeService sizeService;
-	
-	@RequestMapping(value="/newSize", method=RequestMethod.GET)
-	public String newSize(Model model){
+
+	@RequestMapping(value = "/newSize", method = RequestMethod.GET)
+	public String newSize(Model model) {
 		model.addAttribute("size", new Size());
-		model.addAttribute("sizes", DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
-		
-		
+		model.addAttribute("sizes",DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
 		return "views-admin-size";
 	}
-	
-	@RequestMapping(value="/addSize", method=RequestMethod.POST)
-	public String addSize(@ModelAttribute Size size, Model model){
-		try{
+
+	@RequestMapping(value = "/addSize", method = RequestMethod.POST)
+	public String addSize(@ModelAttribute Size size, Model model) {
+		try {
 			sizeService.save(size);
-			}catch (Exception e) {
-					if(e.getMessage().equals(ValidationMessages.EMPTY_SIZE_NAME_FIELD)||
-							e.getMessage().equals(ValidationMessages.SIZE_ALREADY_EXIST)){
-						model.addAttribute("sizeException", e.getMessage());
-						model.addAttribute("size", new Size());
-						model.addAttribute("sizes", DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
-				}	
-				return "views-admin-size";
+		} catch (Exception e) {
+			if (e.getMessage().equals(ValidationMessages.EMPTY_SIZE_NAME_FIELD)
+					|| e.getMessage().equals(ValidationMessages.SIZE_ALREADY_EXIST)) {
+				model.addAttribute("sizeException", e.getMessage());
+				model.addAttribute("size", new Size());
+				model.addAttribute("sizes", DtoUtilMapper.sizesToSizesDTO(sizeService.findAll()));
 			}
-		
-		
+			return "views-admin-size";
+		}
 		return "redirect:/newSize";
 	}
-	
-	
-	@RequestMapping(value="/deleteSize/{id}", method=RequestMethod.GET)
-	
-	public String deleteSize(@PathVariable int id){
+
+	@RequestMapping(value = "/deleteSize/{id}", method = RequestMethod.GET)
+	public String deleteSize(@PathVariable int id) {
 		sizeService.delete(id);
-		
 		return "redirect:/newSize";
-}
+	}
 }

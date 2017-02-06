@@ -16,9 +16,9 @@ public class Size {
 
 	private String name;
 
-	@OneToMany(mappedBy="size")
+	@OneToMany(mappedBy = "size")
 	private List<Commodity> commodity;
-	
+
 	public Size() {
 	}
 
@@ -50,14 +50,15 @@ public class Size {
 	public void setCommodity(List<Commodity> commodity) {
 		this.commodity = commodity;
 	}
-	public String getFullSize() {
-		String fullSize=this.name;
 
-	return  fullSize;
+	public String getFullSize() {
+		String fullSize = this.name;
+
+		return fullSize;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Size: "+ name;
+		return "Size: " + name;
 	}
 }

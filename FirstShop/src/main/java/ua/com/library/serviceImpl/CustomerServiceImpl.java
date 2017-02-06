@@ -49,7 +49,6 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 		customer.setRole(Role.ROLE_USER);
 		customer.setPassword(encoder.encode(customer.getPassword()));
 		customerDao.save(customer);
-
 	}
 
 	public List<Customer> findAll() {
@@ -65,9 +64,7 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 
 	}
 
-	public UserDetails loadUserByUsername(String name)
-			throws UsernameNotFoundException {
-
+	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
 		return customerDao.findByName(name);
 	}
 
@@ -77,28 +74,20 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 
 	@Transactional
 	public void deleteCommodityFromCustomer(int idCustomer, int idCommodity) {
-
 		Customer customer = customerDao.findOne(idCustomer);
-
 		customer.getCommodities().remove(commodityDao.findOne(idCommodity));
-
 	}
 
 	@Transactional
 	public void buyCommodity(Principal principal, String id) {
-		Customer customer = customerDao.findOne(Integer.parseInt(principal
-				.getName()));
-	
+		Customer customer = customerDao.findOne(Integer.parseInt(principal.getName()));
 		Commodity commodity = commodityDao.findOne(Integer.parseInt(id));
-
 		customer.getCommodities().add(commodity);
 	}
 
 	@Transactional
 	public void saveImage(int id, MultipartFile multipartFile) {
-
 		Customer customer = customerDao.findOne(id);
-
 		String path = System.getProperty("catalina.home") + "/resources/"
 				+ customer.getName() + "/"
 				+ multipartFile.getOriginalFilename();
@@ -107,7 +96,6 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 				+ multipartFile.getOriginalFilename());
 
 		File file = new File(path);
-
 		try {
 			file.mkdirs();
 			try {
@@ -136,38 +124,33 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 	}
 
 	@Override
-	public Cookie intoBasket(int id, int quantity, HttpServletRequest request,
-			HttpServletResponse response) {
-		
+	public Cookie intoBasket(int id, int quantity, HttpServletRequest request, HttpServletResponse response) {
 		
 		request.getSession(false);
-		Commodity commodity= commodityDao.findOne(id);
-		double purshasePrice= commodity.getPrice()*quantity;
+		Commodity commodity = commodityDao.findOne(id);
+		double purshasePrice = commodity.getPrice() * quantity;
 		System.out.println(purshasePrice);
-		String price=commodity.getArticul()+purshasePrice;
-		
+		String price = commodity.getArticul() + purshasePrice;
 		Cookie commodityCookie = new Cookie(price, String.valueOf(commodity.getId()));
 		commodityCookie.setMaxAge(24 * 60 * 60 * 60);
 		commodityCookie.setHttpOnly(true);
 		commodityCookie.setPath("/");
-	
 		response.addCookie(commodityCookie);
 		return commodityCookie;
-		
 	}
 
 	@Override
 	public List<CommodityDTO> customerCommoditiesCookie(HttpServletRequest request) {
+		
 		request.getSession(false);
 		List<CommodityDTO> commodities = new ArrayList<>();
 		for (Cookie cookie : request.getCookies()) {
 			if (cookie.getName().equals("JSESSIONID")) {
-				
 			} else {
-				CommodityDTO com=new CommodityDTO();
-				Commodity comPath=commodityDao.findOne(Integer.parseInt(cookie.getValue()));
+				CommodityDTO com = new CommodityDTO();
+				Commodity comPath = commodityDao.findOne(Integer.parseInt(cookie.getValue()));
 				com.setId(Integer.parseInt(cookie.getValue()));
-				com.setArticul(cookie.getName().substring(0,3));
+				com.setArticul(cookie.getName().substring(0, 3));
 				com.setPrice(Double.parseDouble(cookie.getName().substring(3)));
 				System.out.println(comPath.getPathImage());
 				com.setPathImage(comPath.getPathImage());
@@ -176,70 +159,36 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 		}
 		return commodities;
 	}
-	
 
 	@Override
 	@Transactional
 	public void getOrder(String idCustomer, String idCommodity,
 			HttpServletRequest request, HttpServletResponse response) {
-		Customer customer= customerDao.fetchCustomerWithCommodity(Integer.parseInt(idCustomer));
-		Commodity commodity= commodityDao.findOne(Integer.parseInt(idCommodity));
+		Customer customer = customerDao.fetchCustomerWithCommodity(Integer.parseInt(idCustomer));
+		Commodity commodity = commodityDao.findOne(Integer.parseInt(idCommodity));
 		customer.getCommodities().add(commodity);
-
 		Cookie[] cookies = request.getCookies();
 		sortCookie(cookies, idCommodity, response);
 	}
 
 	@Override
-	public void deleteCookieFromOrder(String id, HttpServletRequest request,
-			HttpServletResponse response) {
+	public void deleteCookieFromOrder(String id, HttpServletRequest request,HttpServletResponse response) {
 		Cookie[] cookies = request.getCookies();
-        sortCookie(cookies, id, response);
-		
+		sortCookie(cookies, id, response);
 	}
 
-	public void sortCookie(Cookie[] cookies, String id, HttpServletResponse response) {
-        for (int i = 0; i < cookies.length; i++) {
-            if (id.equals(cookies[i].getValue())) {
-                Cookie cookie = new Cookie(cookies[i].getName(), null);
-                cookie.setPath("/");
-                cookie.setValue(null);
-                cookie.setHttpOnly(true);
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            }
-        }
+	public void sortCookie(Cookie[] cookies, String id,
+			HttpServletResponse response) {
+		for (int i = 0; i < cookies.length; i++) {
+			if (id.equals(cookies[i].getValue())) {
+				Cookie cookie = new Cookie(cookies[i].getName(), null);
+				cookie.setPath("/");
+				cookie.setValue(null);
+				cookie.setHttpOnly(true);
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

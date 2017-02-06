@@ -16,9 +16,9 @@ public class Gender {
 
 	private String name;
 
-	@OneToMany(mappedBy="gender")
+	@OneToMany(mappedBy = "gender")
 	private List<Commodity> commodity;
-	
+
 	public Gender() {
 	}
 
@@ -50,14 +50,15 @@ public class Gender {
 	public void setCommodity(List<Commodity> commodity) {
 		this.commodity = commodity;
 	}
-	public String getFullGender() {
-		String fullGender=this.name;
 
-	return  fullGender;
+	public String getFullGender() {
+		String fullGender = this.name;
+
+		return fullGender;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Gender: "+name;
+		return "Gender: " + name;
 	}
 }

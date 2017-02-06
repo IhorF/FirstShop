@@ -12,9 +12,5 @@ public interface ColorService {
 	Color findOne(int id);
 
 	void delete(int id);
-	
-	/*List<Color> findColorWithCommodities();*/
-	
-/*	Color fetchColorWithCommodity(@Param("id") int id);*/
-	
+
 }

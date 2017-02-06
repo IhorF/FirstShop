@@ -10,6 +10,7 @@ import ua.com.library.dao.ColorDao;
 import ua.com.library.entity.Color;
 import ua.com.library.service.ColorService;
 import ua.com.library.validator.Validator;
+
 @Service
 public class ColorServiceImpl implements ColorService {
 
@@ -18,7 +19,7 @@ public class ColorServiceImpl implements ColorService {
 	@Autowired
 	@Qualifier("colorValidator")
 	private Validator validator;
-	
+
 	@Override
 	public void save(Color color) throws Exception {
 		validator.validate(color);
@@ -39,17 +40,5 @@ public class ColorServiceImpl implements ColorService {
 	public void delete(int id) {
 		colorDao.delete(id);
 	}
-/*	public List<Color> findColorWithCommodities() {
-		return colorDao.findColorWithCommodity();
-	}*/
 
-/*	@Override
-	public Color fetchColorWithCommodity(int id) {
-		
-		return colorDao.fetchColorWithCommodity(id);
-	}*/
-	
-	
-	
-	
 }
